@@ -6,13 +6,37 @@
 
 Призначення: облік видач примірників книг читачам і повернень.
 
+Структура solution
+
+CrossApp/
+├── CrossApp.sln
+├── README.md
+├── .gitignore
+└── src/
+    ├── Core/
+    │   ├── Core.csproj
+    │   └── EnvironmentInfo.cs
+    └── Cli/
+        ├── Cli.csproj
+        └── Program.cs
+
 \## Запуск
 
 dotnet build
 
 dotnet run --project src/Cli
 
+Publish:
+
+dotnet publish src/Cli -c Release -r win-x64 --self-contained true
+dotnet publish src/Cli -c Release -r win-x64 --self-contained false
+
+
+| RID | Режим | Розмір publish | Потрібен runtime |
+|---------|----------------|---------|-----------------------|
+| win-x64 | self-contained | 75 МБ   |         ні            |
+| win-x64 | self-contained | 0.3 МБ  |    так (.NET 8,10)    |
+
 \## Середовище
 
 .NET SDK 8.0, Windows x64
-
