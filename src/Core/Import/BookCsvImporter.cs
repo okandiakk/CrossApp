@@ -45,10 +45,10 @@ public static class BookCsvImporter
 
     return parts switch
     {
-        { Length: < 4 } or { Length: > 5 }
+        { Length: < 4 } or { Length: > 5 } //перевірка довжини
             => new ParseFailed($"очікую 4 або 5 колонок, отримав {parts.Length}"),
 
-        [_, "", _, _] or [_, _, "", _] or [_, "", _, _, _] or [_, _, "", _, _]
+        [_, "", _, _] or [_, _, "", _] or [_, "", _, _, _] or [_, _, "", _, _] 
             => new ParseFailed("ISBN або назва порожні"),
 
         [_, _, _, var year4] when !int.TryParse(year4, out int y4) || y4 < 1450 || y4 > DateTime.Now.Year
