@@ -24,6 +24,12 @@ if (args.Contains("--lending"))
     return 0;
 }
 
+if (args.Contains("--storage-extra"))
+{
+    StorageExtraDemo.Run();
+    return 0;
+}
+
 
 bool mixed = args.Contains("--mixed");
 string path = args.FirstOrDefault(a => !a.StartsWith("--")) ?? Path.Combine("data", "sample.csv");

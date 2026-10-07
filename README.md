@@ -53,6 +53,12 @@ LendingService(IBookCopyStore) — AddBook, IssueCopy, ReturnCopy, All, Find; з
 Composition root — LendingDemo.Run у Cli: вибір реалізації прапорцем --file.
 
 
+## Додаткове завдання (lab05)
+
+CachingBookCopyStore — декоратор над IBookCopyStore: кешує List() до наступної зміни (Add/Update/Remove).
+IBookCopyStore.Find(Func<BookCopy,bool>) — default interface method, пошук без змін у реалізаціях.
+StoreFactory.Create(args) — вибір і композиція реалізацій (file/cache) в одному місці замість Program.cs.
+
 
 \## Запуск
 

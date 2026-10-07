@@ -1,6 +1,6 @@
 using Core.Domain;
 
-namespace Cli;
+namespace Core;
 
 public static class SampleData
 {
