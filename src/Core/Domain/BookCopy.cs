@@ -15,7 +15,7 @@ public sealed class BookCopy
         IsIssued = isIssued;
     }
 
-    public static BookCopy Create(string id, string isbn, bool isIssued = false)
+    public static BookCopy Create(string id, string isbn, bool isIssued = false) //методу не потрібен готовий обєкт, сам робить
     {
         if (string.IsNullOrWhiteSpace(id))
             throw new ArgumentException("Ідентифікатор примірника обов'язковий", nameof(id));

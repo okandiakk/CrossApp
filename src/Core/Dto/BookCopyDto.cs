@@ -1,3 +1,3 @@
 namespace Core.Dto;
 
-public record BookCopyDto(string Id, string Isbn, bool IsIssued);
+public record BookCopyDto(string Id, string Isbn, bool IsIssued); //для перенесення даних примірника
