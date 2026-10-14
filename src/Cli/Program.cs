@@ -18,6 +18,12 @@ if (args.Contains("--extra"))
     return 0;
 }
 
+if (args.Contains("--events-extra"))
+{
+    EventsExtraDemo.Run();
+    return 0;
+}
+
 if (args.Contains("--events"))
 {
     EventsDemo.Run(args);
