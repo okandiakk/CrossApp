@@ -59,6 +59,12 @@ CachingBookCopyStore — декоратор над IBookCopyStore: кешує Li
 IBookCopyStore.Find(Func<BookCopy,bool>) — default interface method, пошук без змін у реалізаціях.
 StoreFactory.Create(args) — вибір і композиція реалізацій (file/cache) в одному місці замість Program.cs.
 
+## Доменні події (lab06)
+
+LendingService.Changed — event EventHandler<LendingChangedEventArgs>: BookAdded, CopyIssued, CopyReturned.
+Дані події: CopyId, ReaderId, DueDate, час. Подія піднімається лише після успішної зміни стану.
+Core не пише в консоль і лог: підписники живуть у Cli (локальний метод + лямбда-лічильник), лог — logs/app.log.
+FindAll(Func<BookCopy,bool>) — пошук з критерієм від викликача.
 
 \## Запуск
 

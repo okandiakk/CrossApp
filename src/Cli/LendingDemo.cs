@@ -13,7 +13,7 @@ public static class LendingDemo
         string dataPath = Path.Combine(AppContext.BaseDirectory, "data", "catalog.json");
 
         IBookCopyStore store = useFile
-            ? new FileBookCopyStore(dataPath)
+            ? new FileBookCopyStore(dataPath) //пишемо new тільки тут для конткретного сховища
             : new InMemoryBookCopyStore(SampleData.Copies());
 
         var service = new LendingService(store);
