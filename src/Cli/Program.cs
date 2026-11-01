@@ -45,6 +45,12 @@ if (args.Contains("--storage-extra"))
 if (args.Contains("--import"))
     return await AsyncDemo.RunAsync(args);
 
+if (args.Contains("--async-extra"))
+{
+    await AsyncExtraDemo.RunAsync();
+    return 0;
+}
+
 string? reportCommand = args.FirstOrDefault(a => a.StartsWith("report-"));
 if (reportCommand is not null)
     return ReportsDemo.Run(reportCommand);
