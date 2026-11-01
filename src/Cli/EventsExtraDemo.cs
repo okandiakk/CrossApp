@@ -24,7 +24,7 @@ public static class EventsExtraDemo
         Directory.CreateDirectory(Path.GetDirectoryName(logPath)!);
         File.WriteAllText(logPath, string.Empty);
 
-        var sink = new CompositeSink(new ConsoleSink(), new FileSink(logPath));
+        var sink = new CompositeSink(new ConsoleSink(), new FileSink(logPath)); //сповіщення сюди в консоль і файл
         var service = new LendingService(new InMemoryBookCopyStore(), sink);
 
         int viaEvent = 0;

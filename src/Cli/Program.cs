@@ -2,7 +2,7 @@
 using Core.Dto;
 using Core.Import;
 
-// Використання: Cli [шлях] [--mixed] [--domain] [--extra] [--lending [--file]] [--events [--file]] [report-top|report-overdue|report-groups|report-sum|report-deferred|report-empty]
+// Використання: Cli [шлях] [--mixed] [--domain] [--extra] [--lending [--file]] [--events [--file]] [report-top|report-overdue|report-groups|report-sum|report-deferred|report-empty]  [--import [--slow] [--timeout=мс]]
 //   .csv  -> BookCsvImporter, .json -> BookJsonImporter
 //   --mixed  -> файл із префіксами типів (B;... книги, R;... читачі)
 //   --domain -> демонстрація доменної моделі (лаба 4)
@@ -41,6 +41,9 @@ if (args.Contains("--storage-extra"))
     StorageExtraDemo.Run();
     return 0;
 }
+
+if (args.Contains("--import"))
+    return await AsyncDemo.RunAsync(args);
 
 string? reportCommand = args.FirstOrDefault(a => a.StartsWith("report-"));
 if (reportCommand is not null)
