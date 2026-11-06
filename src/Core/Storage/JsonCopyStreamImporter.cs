@@ -31,7 +31,7 @@ public sealed class JsonCopyStreamImporter : ICopyStreamImporter
             {
                 copy = BookCopy.FromDto(dto);
             }
-            catch (ArgumentException ex)
+            catch (ArgumentException ex) //в полі цифр слова
             {
                 throw new DomainException($"Запис {number}: {ex.Message.ReplaceLineEndings(" ")}", ex);
             }

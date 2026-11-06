@@ -8,15 +8,14 @@ namespace Cli;
 
 public static class LendingDemo
 {
-    public static void Run(bool useFile)
+    public static void Run(bool useFile, AppSettings settings)
     {
-        string dataPath = Path.Combine(AppContext.BaseDirectory, "data", "catalog.json");
 
-        IBookCopyStore store = useFile
-            ? new FileBookCopyStore(dataPath) //пишемо new тільки тут для конткретного сховища
-            : new InMemoryBookCopyStore(SampleData.Copies());
+	IBookCopyStore store = useFile
+    		? new FileBookCopyStore(settings.DataFile)
+    		: new InMemoryBookCopyStore(SampleData.Copies());
 
-        var service = new LendingService(store);
+	var service = new LendingService(store, loanDays: settings.Library.LoanDays);
         Console.WriteLine($"Сховище: {store.GetType().Name}");
 
         BookCopy created = service.AddBook("978-966-03-1234-5");

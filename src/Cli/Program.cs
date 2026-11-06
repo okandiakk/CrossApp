@@ -2,7 +2,7 @@
 using Core.Dto;
 using Core.Import;
 
-// Використання: Cli [шлях] [--mixed] [--domain] [--extra] [--lending [--file]] [--events [--file]] [report-top|report-overdue|report-groups|report-sum|report-deferred|report-empty]  [--import [--slow] [--timeout=мс]]
+// Використання: Cli [шлях] [--mixed] [--domain] [--extra] [--lending [--file]] [--events [--file]] [report-top|report-overdue|report-groups|report-sum|report-deferred|report-empty]  [--import [--slow] [--timeout=мс]] [--config] [--export] [--load]
 //   .csv  -> BookCsvImporter, .json -> BookJsonImporter
 //   --mixed  -> файл із префіксами типів (B;... книги, R;... читачі)
 //   --domain -> демонстрація доменної моделі (лаба 4)
@@ -30,11 +30,7 @@ if (args.Contains("--events"))
     return 0;
 }
 
-if (args.Contains("--lending"))
-{
-    LendingDemo.Run(useFile: args.Contains("--file"));
-    return 0;
-}
+LendingDemo.Run(args.Contains("--file"), AppConfig.Load(args));
 
 if (args.Contains("--storage-extra"))
 {
@@ -50,6 +46,9 @@ if (args.Contains("--async-extra"))
     await AsyncExtraDemo.RunAsync();
     return 0;
 }
+
+if (args.Contains("--config") || args.Contains("--export") || args.Contains("--load"))
+    return ConfigDemo.Run(args);
 
 string? reportCommand = args.FirstOrDefault(a => a.StartsWith("report-"));
 if (reportCommand is not null)

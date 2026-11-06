@@ -6,3 +6,4 @@ public interface ICopyStreamImporter
 {
     IAsyncEnumerable<BookCopy> StreamAsync(string path, CancellationToken ct = default);
 }
+//асинхронна послідовність

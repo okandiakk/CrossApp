@@ -16,8 +16,9 @@ public static class AsyncDemo
         bool slow = args.Contains("--slow");
         int? timeoutMs = ParseTimeout(args);
 
-        IBookCopyStore store = StoreFactory.Create(args);
-        var service = new LendingService(store);
+	AppSettings settings = AppConfig.Load(args);
+	IBookCopyStore store = StoreFactory.Create(args, settings.DataFile);
+	var service = new LendingService(store, loanDays: settings.Library.LoanDays);
         int events = 0;
         service.Changed += (_, _) => events++;
         Console.WriteLine($"Сховище: {store.GetType().Name}");
